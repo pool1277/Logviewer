@@ -1,0 +1,10 @@
+C:\Users\chshih\Desktop\ks新人訓練\LogViewer\LogViewer\bin\Debug\LogViewer.exe.config
+C:\Users\chshih\Desktop\ks新人訓練\LogViewer\LogViewer\bin\Debug\LogViewer.exe
+C:\Users\chshih\Desktop\ks新人訓練\LogViewer\LogViewer\bin\Debug\LogViewer.pdb
+C:\Users\chshih\Desktop\ks新人訓練\LogViewer\LogViewer\obj\Debug\LogViewer.Form1.resources
+C:\Users\chshih\Desktop\ks新人訓練\LogViewer\LogViewer\obj\Debug\LogViewer.Properties.Resources.resources
+C:\Users\chshih\Desktop\ks新人訓練\LogViewer\LogViewer\obj\Debug\LogViewer.csproj.GenerateResource.cache
+C:\Users\chshih\Desktop\ks新人訓練\LogViewer\LogViewer\obj\Debug\LogViewer.csproj.CoreCompileInputs.cache
+C:\Users\chshih\Desktop\ks新人訓練\LogViewer\LogViewer\obj\Debug\LogViewer.exe
+C:\Users\chshih\Desktop\ks新人訓練\LogViewer\LogViewer\obj\Debug\LogViewer.pdb
+C:\Users\chshih\Desktop\ks新人訓練\LogViewer\LogViewer\obj\Debug\LogViewer.csprojAssemblyReference.cache
