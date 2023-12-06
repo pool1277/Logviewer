@@ -11,13 +11,13 @@ using System.Linq;
 
 namespace LogViewer
 {
-    public partial class Form1 : Form
+    public partial class LogForm : Form
     {
         private Log currentLog;
         private List<LogItem> FilterLogView;
 
 
-        public Form1()
+        public LogForm()
         {
             InitializeComponent();
         }
@@ -85,14 +85,8 @@ namespace LogViewer
             LogDataGridView.DataSource = items;
             LogDataGridView.ResumeLayout();
             LogDataGridView.Refresh();
-
         }
 
-
-        private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
@@ -114,7 +108,7 @@ namespace LogViewer
         private void saveFileButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "純文字檔(*.txt) | *.txt | .csv(*.csv) | *.csv";
+            saveFileDialog.Filter = "純文字檔(*.txt) | *.txt | .csv(*.csv) | *.csv| .json(*.json) | *.json";
             DialogResult dialogResult = saveFileDialog.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
@@ -128,12 +122,38 @@ namespace LogViewer
         private void dataFilterCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             dataFilterPanel.Enabled = dataFilterCheckBox.Checked;
-
         }
 
         private void dataFilterTimeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             dataFilterTimePanel.Enabled = dataFilterTimeCheckBox.Enabled;
+        }
+
+
+
+        private void LogDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1 || e.ColumnIndex == -1)
+                return;
+
+            // Check if the text contain "#Json", show up the JsonForm.
+            DataGridView dgv = (DataGridView)sender;
+            DataGridViewRow row = dgv.Rows[e.RowIndex];
+            string cellText = row.Cells[e.ColumnIndex].Value?.ToString();
+
+            string[] seperator = new string[]
+            {
+                "#json"
+            };
+
+            if (cellText != null && cellText.Contains("#json"))
+            {
+                //MessageBox.Show("Contain Message!");
+                string jsonText = cellText.Split(seperator, StringSplitOptions.None).Last();
+                JsonForm jsonForm = new JsonForm(jsonText);
+
+                jsonForm.Show();
+            }
         }
     }
 

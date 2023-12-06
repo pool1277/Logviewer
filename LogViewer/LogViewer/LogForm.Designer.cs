@@ -1,6 +1,6 @@
 ﻿namespace LogViewer
 {
-    partial class Form1
+    partial class LogForm
     {
         /// <summary>
         /// 設計工具所需的變數。
@@ -123,6 +123,7 @@
             this.LogDataGridView.RowTemplate.Height = 24;
             this.LogDataGridView.Size = new System.Drawing.Size(701, 308);
             this.LogDataGridView.TabIndex = 5;
+            this.LogDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LogDataGridView_CellDoubleClick);
             // 
             // beginDateTimePicker
             // 
@@ -238,13 +239,13 @@
             this.splitContainer1.SplitterDistance = 138;
             this.splitContainer1.TabIndex = 9;
             // 
-            // Form1
+            // LogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 450);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "Form1";
+            this.Name = "LogForm";
             this.Text = "Form";
             ((System.ComponentModel.ISupportInitialize)(this.LogDataGridView)).EndInit();
             this.dataFilterPanel.ResumeLayout(false);
