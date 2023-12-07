@@ -25,7 +25,6 @@ namespace LogViewer
             var Jsonobject = new object();
             Jsonobject= JsonConvert.DeserializeObject(jsonText);
             indentJsonText = JsonConvert.SerializeObject(Jsonobject, Formatting.Indented);
-
             contentLabel.Text = indentJsonText;
         }
 

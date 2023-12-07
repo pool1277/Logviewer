@@ -85,7 +85,7 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(463, 15);
+            this.confirmButton.Location = new System.Drawing.Point(463, 20);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(75, 23);
             this.confirmButton.TabIndex = 3;
@@ -95,7 +95,7 @@
             // 
             // readFileButton
             // 
-            this.readFileButton.Location = new System.Drawing.Point(555, 15);
+            this.readFileButton.Location = new System.Drawing.Point(555, 20);
             this.readFileButton.Name = "readFileButton";
             this.readFileButton.Size = new System.Drawing.Size(75, 23);
             this.readFileButton.TabIndex = 3;
@@ -124,6 +124,7 @@
             this.LogDataGridView.Size = new System.Drawing.Size(701, 308);
             this.LogDataGridView.TabIndex = 5;
             this.LogDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LogDataGridView_CellDoubleClick);
+            this.LogDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.LogDataGridView_ColumnHeaderMouseClick);
             // 
             // beginDateTimePicker
             // 

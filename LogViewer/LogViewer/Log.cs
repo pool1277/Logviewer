@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
 
 namespace LogViewer
@@ -16,13 +15,12 @@ namespace LogViewer
         public string Tags { get;  set; }
         public string Message { get;  set; }
 
-
         public LogItem()
         {
 
         }
 
-        public LogItem (string [] separerateLog)
+        public LogItem(string [] separerateLog)
         {
             Level = separerateLog[(int)Logtype.Level];
             Category = separerateLog[(int)Logtype.Category];
@@ -41,20 +39,18 @@ namespace LogViewer
 
             return logTextArray;
         }
-
     }
 
     public class Log
     {
         public List<LogItem> Items { get; private set; }
 
-
-        public Log()
+        public Log ()
         {
 
         }
 
-        public Log(List<LogItem> items)
+        public Log (List<LogItem> items)
         {
             Items = items.ToList();
         }
@@ -65,10 +61,7 @@ namespace LogViewer
             if (!File.Exists(path))
                 return false;
 
-            //read file 
             Items = readLogFile(path);
-
-
             return true;
         }
 
@@ -85,21 +78,16 @@ namespace LogViewer
             switch (format)
             {
                 case ".json":
-
                     JsonUtility.ReadObject(path, ref logList);
-                    //Serilizer.Json.ReadObject(path, ref logList);
                     break;
 
                 default:
-
                     StreamReader logstreamReader = File.OpenText(path);
                     while (!logstreamReader.EndOfStream)
                     {
                         string lineMessage = logstreamReader.ReadLine();
                         string[] separerateLog = lineMessage.Split(new char[] { ',' }, 4, StringSplitOptions.None);
-
                         LogItem Item = new LogItem(separerateLog);
-
                         logList.Add(Item);
                     }
 
@@ -118,15 +106,12 @@ namespace LogViewer
             switch (format)
             {
                 case ".json":
-
                     result = JsonUtility.WriteObject(logItems, path);
-                    //Serilizer.Json.WriteObject(logItems, path);
-
+                    result = true;
                     break;
 
                 default:
                     StreamWriter streamWriter = new StreamWriter(path);
-
 
                     for (int i = 0; i < logItems.Count; i++)
                     {
@@ -141,7 +126,7 @@ namespace LogViewer
 
                         streamWriter.WriteLine(sb.ToString());
                     }
-
+            
                     streamWriter.Close();
                     streamWriter.Dispose();
                     result = true;
@@ -151,17 +136,13 @@ namespace LogViewer
         }
     }
 
-    public　enum Logtype
+    public enum Logtype
     {
         Level = 0,
         Category = 1,
         Time = 2,
         Message = 3,
     }
-
-
-
-
 }
 
 

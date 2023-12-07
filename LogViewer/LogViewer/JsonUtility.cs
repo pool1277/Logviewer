@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+
 
 namespace LogViewer
 {
@@ -16,8 +12,8 @@ namespace LogViewer
             try
             {
                 string json = JsonConvert.SerializeObject(obj,Formatting.Indented);
-                File.WriteAllText(path, json);
 
+                File.WriteAllText(path, json);
                 return true;
             }
 
@@ -39,7 +35,6 @@ namespace LogViewer
                 //Read file
                 string json = File.ReadAllText(path);
                 obj = JsonConvert.DeserializeObject<T>(json);
-
                 return true;
             }
 
@@ -49,8 +44,5 @@ namespace LogViewer
                 return false;
             }
         }
-
-
     }
-
 }
