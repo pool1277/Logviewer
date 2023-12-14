@@ -23,7 +23,12 @@ namespace LogViewer
 
             //Show the jsontext (indent-format)
             var Jsonobject = new object();
-            Jsonobject= JsonConvert.DeserializeObject(jsonText);
+            Jsonobject = JsonConvert.DeserializeObject(jsonText);
+            // Handle some case need two times deserialize
+            if (Jsonobject.GetType().Name == "String")
+            {
+                Jsonobject = JsonConvert.DeserializeObject((string)Jsonobject);
+            }
             indentJsonText = JsonConvert.SerializeObject(Jsonobject, Formatting.Indented);
             contentLabel.Text = indentJsonText;
         }
@@ -32,15 +37,14 @@ namespace LogViewer
         {
             try
             {
-                JObject jObject = JObject.Parse(indentJsonText);
-                if (jObject.ContainsKey(nameTextBox.Text))
+                if (nameTextBox.Text != "")
                 {
-                    JToken jToken = jObject.GetValue(nameTextBox.Text);
-                    contentLabel.Text = jToken.ToString();
+                    string resultText = "";
+                    JsonUtility.JsonSearch(indentJsonText, nameTextBox.Text, ref resultText);
+                    contentLabel.Text = resultText;
                 }
                 else
                 {
-                    MessageBox.Show("not found");
                     contentLabel.Text = indentJsonText;
                 }
             }
