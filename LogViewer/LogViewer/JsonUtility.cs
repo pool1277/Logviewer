@@ -53,7 +53,6 @@ namespace LogViewer
                 if (!string.IsNullOrEmpty(jsonText))
                 {
                     JToken node = JContainer.Parse(jsonText);
-
                     //Find in this node (Object)
                     if (node.Type == JTokenType.Object)
                     {
@@ -61,15 +60,15 @@ namespace LogViewer
                         if (jnode.ContainsKey(searchPattern))
                         {
                             JToken jToken = jnode.GetValue(searchPattern);
-                            searchPattern = jToken.ToString();
+                            searchResult = jToken.ToString();
                             return;
                         }
 
                         //Find in subtree
                         foreach (var jToken in jnode)
                         {
-                            JsonSearch(jToken.Value.ToString(), searchPattern, ref searchPattern);
-                            if (searchPattern != "")
+                            JsonSearch(jToken.Value.ToString(), searchPattern, ref searchResult);
+                            if (searchResult != "")
                                 return;
                         }
                     }
@@ -81,8 +80,8 @@ namespace LogViewer
                         //Find in subtree
                         foreach (var jToken in jnode)
                         {
-                            JsonSearch(jToken.ToString(), searchPattern, ref searchPattern);
-                            if (searchPattern != "")
+                            JsonSearch(jToken.ToString(), searchPattern, ref searchResult);
+                            if (searchResult != "")
                                 return;
                         }
                     }
