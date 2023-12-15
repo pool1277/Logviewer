@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -13,7 +14,7 @@ namespace LogViewer
         {
             try
             {
-                string json = JsonConvert.SerializeObject(obj,Formatting.Indented);
+                string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
                 File.WriteAllText(path, json);
                 return true;
             }
@@ -91,10 +92,33 @@ namespace LogViewer
 
             catch (Exception ex)
             {
-                return; 
+                return;
             }
         }
 
 
+        public static bool JsonPathSearch(string jsonText, string searchPattern, ref string searchResult)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(jsonText))
+                {
+                    JToken node = JToken.Parse(jsonText);
+                    string jsonPath = @"$.." + searchPattern; //JsonPath expression 
+                    List<JToken> results = node.SelectTokens(jsonPath).ToList();
+
+                    for (int i =0; i < results.Count; i++)
+                    {
+                        searchResult += (results[i].ToString() + "\n");
+                    }
+                }
+                return true;
+            }
+
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

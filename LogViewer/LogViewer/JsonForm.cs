@@ -40,7 +40,8 @@ namespace LogViewer
                 if (nameTextBox.Text != "")
                 {
                     string resultText = "";
-                    JsonUtility.JsonSearch(indentJsonText, nameTextBox.Text, ref resultText);
+                    //JsonUtility.JsonSearch(indentJsonText, nameTextBox.Text, ref resultText);
+                    JsonUtility.JsonPathSearch(indentJsonText, nameTextBox.Text, ref resultText);
                     contentLabel.Text = resultText;
                 }
                 else
